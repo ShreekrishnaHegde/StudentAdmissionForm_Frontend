@@ -1,40 +1,18 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
+import { listStudents } from '../services/EmployeeService';
 
 
 const ListStudentComponent = () => {
-    const dummy=[
-        {
-        "id":1,
-        "firstName":"Krishna",
-        "lastName":"Hegde",
-        "email":"ramesh@gmail.com"
-        },
-        {
-        "id":1,
-        "firstName":"Krishna",
-        "lastName":"Hegde",
-        "email":"ramesh@gmail.com"
-        },
-        {
-            "id":1,
-            "firstName":"Krishna",
-            "lastName":"Hegde",
-            "email":"ramesh@gmail.com"
-            },
-            {
-                "id":1,
-                "firstName":"Krishna",
-                "lastName":"Hegde",
-                "email":"ramesh@gmail.com"
-                },
-                {
-                    "id":1,
-                    "firstName":"Krishna",
-                    "lastName":"Hegde",
-                    "email":"ramesh@gmail.com"
-                    }
+  
+    const [students,setStudents]=useState([]);
+    useEffect(() => {
+        listStudents().then((response) => {
+            setStudents(response.data);
+        }).catch(error => {
+            console.error(error);
+        })
+    },[])
 
-    ]
   return (
     <div className='container'>
         <h2>List of Students</h2>
@@ -85,4 +63,16 @@ export default ListStudentComponent
 
 ->We declare variables using const if the value should not be changed
     We use const if the type of the variables should not be changed such as working with Arrays and objects
+*/
+
+
+/*
+-Hooks are essentially functions that let you access React features from functional components.
+->Side effects in programming, particularly in the context of React, refer to any actions that 
+    interact with the outside world or modify the state of the application beyond the component itself.
+->useEffect hook  performs side effects in functional components, such as:
+    Fetching data
+    Setting up subscriptions
+    Creating timers
+    Mutating the DOM 
 */
