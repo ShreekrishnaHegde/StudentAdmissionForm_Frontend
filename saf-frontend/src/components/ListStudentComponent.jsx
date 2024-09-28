@@ -19,20 +19,24 @@ const ListStudentComponent = () => {
         <table className='table table-success table-striped'>
             <thead>
                 <tr>
-                    <th>Student Name</th>
-                    <th>firstname</th>
-                    <th>lastName</th>
+                    <th>Student Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
                     <th>Email id</th>
+                    <th>Address</th>
+                    <th>Pu marks</th>
                 </tr>
             </thead>
             <tbody>
                 {
-                    dummy.map(student =>
+                    students.map(student =>
                         <tr key={student.id}>
                             <td>{student.id}</td>
                             <td>{student.firstName}</td>
                             <td>{student.lastName}</td>
                             <td>{student.email}</td>
+                            <td>{student.address}</td>
+                            <td>{student.pu_percentage}</td>
                         </tr>
                     )
                 }
