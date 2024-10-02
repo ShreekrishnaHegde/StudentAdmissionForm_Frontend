@@ -19,7 +19,8 @@ function App() {
           <Routes>
            <Route path='/' element= { <ListStudentComponent/>}></Route>
            <Route path='/students' element= {<ListStudentComponent/>}></Route>
-           <Route path='add-student' element= {<StudentComponent/>}></Route>
+           <Route path='/add-student' element= {<StudentComponent/>}></Route>
+           <Route path='/edit-student/:id' element=  {<StudentComponent/>}></Route>
           </Routes>
         <FooterComponent/>
       </BrowserRouter>
