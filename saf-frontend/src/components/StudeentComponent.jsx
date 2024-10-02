@@ -1,9 +1,13 @@
 import React, { useState } from 'react'
+import { createStudent } from '../services/EmployeeService';
+import { useNavigate } from 'react-router-dom';
 
 export const StudeentComponent = () => {
   const [firstName,setFirstName]=useState('');
   const [lastName,setLastName]=useState('');
   const [email,setEmail]=useState('');
+  const navigator=useNavigate();
+
 
   const handleFirstName= (e) => setFirstName(e.target.value);
   const handleLastName= (e) => setLastName(e.target.value);
@@ -13,6 +17,10 @@ export const StudeentComponent = () => {
     e.preventDefault();
     const student={firstName,lastName,email};
     console.log(student);
+    createStudent(student).then((response)=>{
+      console.log(response.data);
+      navigator('/students');
+    })
   }
   return (
     <div className='container'>

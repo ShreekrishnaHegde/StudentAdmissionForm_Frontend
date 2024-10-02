@@ -31,8 +31,6 @@ const ListStudentComponent = () => {
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Email id</th>
-                    <th>Address</th>
-                    <th>Pu marks</th>
                 </tr>
             </thead>
             <tbody>
@@ -43,8 +41,6 @@ const ListStudentComponent = () => {
                             <td>{student.firstName}</td>
                             <td>{student.lastName}</td>
                             <td>{student.email}</td>
-                            <td>{student.address}</td>
-                            <td>{student.pu_percentage}</td>
                         </tr>
                     )
                 }
