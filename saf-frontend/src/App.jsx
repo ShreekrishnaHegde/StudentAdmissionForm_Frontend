@@ -7,7 +7,7 @@ import ListStudentComponent from './components/ListStudentComponent'
 import HeaderComponent from './components/HeaderComponent'
 import FooterComponent from './components/FooterComponent'
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
-import { StudeentComponent } from './components/StudeentComponent'
+import { StudentComponent } from './components/StudentComponent'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -19,7 +19,7 @@ function App() {
           <Routes>
            <Route path='/' element= { <ListStudentComponent/>}></Route>
            <Route path='/students' element= {<ListStudentComponent/>}></Route>
-           <Route path='add-student' element= {<StudeentComponent/>}></Route>
+           <Route path='add-student' element= {<StudentComponent/>}></Route>
           </Routes>
         <FooterComponent/>
       </BrowserRouter>
