@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react'
-import { listStudents } from '../services/EmployeeService';
+import { deleteStudent, listStudents } from '../services/EmployeeService';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -9,12 +9,16 @@ const ListStudentComponent = () => {
     const navigator=useNavigate();
 
     useEffect(() => {
+        getALlstudents();
+    },[])
+
+    function getALlstudents(){
         listStudents().then((response) => {
             setStudents(response.data);
         }).catch(error => {
             console.error(error);
         })
-    },[])
+    }
 
     function addNewStudent(){
         navigator('/add-student');
@@ -23,6 +27,15 @@ const ListStudentComponent = () => {
 
     function updateStudent(id){
         navigator(`/edit-student/${id}`);
+    }
+
+    function removeStudent(id){
+        console.log(id);
+        deleteStudent(id).then((response) =>{
+            getALlstudents();
+        }).catch(error => {
+            console.error(error);
+        })
     }
   return (
     <div className='container'>
@@ -48,6 +61,9 @@ const ListStudentComponent = () => {
                             <td>{student.email}</td>
                             <td>
                                 <button className='btn btn-info' onClick={() =>updateStudent(student.id)}>Update</button>
+                                <button className='btn btn-danger' onClick={() =>removeStudent(student.id)} 
+                                    style={{marginLeft:'10px'}}
+                                    >Delete</button>
                             </td>
                         </tr>
                     )
