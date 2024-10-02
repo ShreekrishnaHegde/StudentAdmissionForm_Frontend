@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { createStudent } from '../services/EmployeeService';
+import React, { useEffect, useState } from 'react'
+import { createStudent, getStudent, updateStudent } from '../services/EmployeeService';
 import { useNavigate, useParams } from 'react-router-dom';
 
 export const StudentComponent = () => {
@@ -19,15 +19,41 @@ export const StudentComponent = () => {
   const handleLastName= (e) => setLastName(e.target.value);
   const handleEmail= (e) => setEmail(e.target.value);
 
-  function saveStudent(e){
+  useEffect(() => {
+    if(id){
+      getStudent(id).then((response) =>{
+        setFirstName(response.data.firstName);
+        setLastName(response.data.lastName)
+        setEmail(response.data.email);
+      }).catch(error =>{
+          console.error(error);
+      })
+    }
+  },[id])
+
+  function saveOrUpdateStudent(e){
     e.preventDefault();
     if(validateForm()){
       const student={firstName,lastName,email};
       console.log(student);
-      createStudent(student).then((response)=>{
-      console.log(response.data)
-      navigator('/students')
-      })
+      if(id){
+        updateStudent(id,student).then((response) =>{
+          console.log(response.data);
+          navigator('/students');
+
+        }).catch(error => {
+          console.error(error);
+        })
+      }
+      else {
+          createStudent(student).then((response)=>{
+          console.log(response.data)
+          navigator('/students')
+          }).catch(error =>{
+            console.error(error);
+          })
+      }
+      
     }
 
     
@@ -120,7 +146,7 @@ export const StudentComponent = () => {
                 {errors.email && <div className='invalid-feedback'>{errors.email}</div>}
 
               </div>
-              <button className='btn btn-success' onClick={saveStudent}>Submit</button>
+              <button className='btn btn-success' onClick={saveOrUpdateStudent}>Submit</button>
             </form>
           </div>
         </div>
