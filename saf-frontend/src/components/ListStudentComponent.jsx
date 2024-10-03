@@ -48,8 +48,8 @@ const ListStudentComponent = () => {
   return (
     <div className='container'>
         <h2 className='text-center'>List of Students</h2>
-        <button className='btn btn-primary mb-2' onClick={addNewStudent}>Add Student</button>
-        <button className='btn btn-primary mb-2' onClick={getSortedStudents} style={{marginLeft: '10px'}}>Sort (ByFirstName)</button>
+        <button className='btn btn-outline-primary' onClick={addNewStudent} style={{marginBottom: '10px'}}>Add Student</button>
+        <button className='btn btn-outline-primary' onClick={getSortedStudents} style={{marginLeft: '10px', marginBottom: '10px'}}>Sort (ByFirstName)</button>
         <table className='table table-success table-striped'>
             <thead>
                 <tr>
@@ -69,8 +69,8 @@ const ListStudentComponent = () => {
                             <td>{student.lastName}</td>
                             <td>{student.email}</td>
                             <td>
-                                <button className='btn btn-info' onClick={() =>updateStudent(student.id)}>Update</button>
-                                <button className='btn btn-danger' onClick={() =>removeStudent(student.id)} 
+                                <button className='btn btn-outline-success' onClick={() =>updateStudent(student.id)}>Update</button>
+                                <button className='btn btn-outline-danger' onClick={() =>removeStudent(student.id)} 
                                     style={{marginLeft:'10px'}}
                                     >Delete</button>
                             </td>
