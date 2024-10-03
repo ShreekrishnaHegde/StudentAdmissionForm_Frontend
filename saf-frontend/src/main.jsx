@@ -8,3 +8,8 @@ createRoot(document.getElementById('root')).render(
     <App />
   </StrictMode>
 )
+
+/*
+->JSX is javascript xml.
+->Return statements are capable of returning only single eleement.
+*/
