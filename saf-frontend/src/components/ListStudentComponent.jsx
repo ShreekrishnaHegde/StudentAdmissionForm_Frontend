@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react'
-import { deleteStudent, listStudents } from '../services/EmployeeService';
+import { deleteStudent, listStudents, sortStudents } from '../services/EmployeeService';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -9,11 +9,18 @@ const ListStudentComponent = () => {
     const navigator=useNavigate();
 
     useEffect(() => {
-        getALlstudents();
+        getAllstudents();
     },[])
 
-    function getALlstudents(){
+    function getAllstudents(){
         listStudents().then((response) => {
+            setStudents(response.data);
+        }).catch(error => {
+            console.error(error);
+        })
+    }
+    function getSortedStudents(){
+        sortStudents().then((response) => {
             setStudents(response.data);
         }).catch(error => {
             console.error(error);
@@ -32,15 +39,17 @@ const ListStudentComponent = () => {
     function removeStudent(id){
         console.log(id);
         deleteStudent(id).then((response) =>{
-            getALlstudents();
+            getAllstudents();
         }).catch(error => {
             console.error(error);
         })
     }
+
   return (
     <div className='container'>
         <h2 className='text-center'>List of Students</h2>
         <button className='btn btn-primary mb-2' onClick={addNewStudent}>Add Student</button>
+        <button className='btn btn-primary mb-2' onClick={getSortedStudents} style={{marginLeft: '10px'}}>Sort (ByFirstName)</button>
         <table className='table table-success table-striped'>
             <thead>
                 <tr>
